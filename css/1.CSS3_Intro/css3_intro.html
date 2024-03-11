@@ -17,26 +17,34 @@
             - 값 (Value) : 속성에 적용할 값. 키워드, 크기 단위, 색상 단위로 지정
 
         HTML에 CSS 적용 :
-            - 
-            - 
-            - 
-            - 적용 우선순위 : 
+            - Link style : HTML 외부에 있는 CSS 파일을 HTML에 로드해서 사용하는 방식
+            - Embedding style : HTML 내부 중 head 요소 안에 style 요소로 css를 작성하는 방식
+            - Inline style : HTML 요소의 시작 태그에 style 속성으로 css를 작성하는 방식
+            - 적용 우선순위 : Inline > Embedding > Link
+            
     -->
 
     <!-- Link style -->
+    <link rel="stylesheet" href="./style.css" />
 
     <!-- Embedding style -->
+    <style>
+        h1 { color: orange; }
+        h2 { color: blue; }
+    </style>
 
     <!--
         Reset CSS : 
-            - 
-            - 
+            - 모든 웹 브라우저는 각자 기본 스타일을 가지고 있어 CSS가 없이 웹 브라우저따라 스타일을 각각 다르게 표현 됨
+            - Reset CSS를 사용하여 HTML 기본 스타일을 제거하고 각 브라우저 마다 동일한 스타일로 통일 할 수 있도록 해줌
     -->
+    <link rel="stylesheet" href="./reset.css" />
+
 </head>
 <body>
     <h1>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h1>
     <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h2>
     <!-- Inline style -->
-    <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h3>
+    <h3 style="color: green;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h3>
 </body>
 </html>
