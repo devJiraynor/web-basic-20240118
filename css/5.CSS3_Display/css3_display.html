@@ -78,20 +78,26 @@
 
 
         /*
-            visibility 속성 : 
-                - visible : 
-                - hidden : 
-                - collapse : 
+            visibility 속성 : 요소를 보이게 할지 보이지 않게 할 것인지를 지정
+                - visible : 요소를 보이게 함 (기본값)
+                - hidden : 요소를 보이지 않게 함 (공간은 존재함)
+                - collapse : table에서 행이나 열을 보이지 않게 함
         */
-        
+        .visible { visibility: visible; }
+        .hidden { visibility: hidden; }
+        .collapse { visibility: collapse; }
 
 
 
         /*
             opacity 속성 : 
-                - 
-                - 
+                - 요소 전체의 투명도를 지정
+                - 0 ~ 1의 값을 가지며 0은 완전 투명, 1은 완전 불투명
         */
+        .opacity {
+            width: 200px;
+            opacity: 0.2;
+        }
         
 
     </style>
