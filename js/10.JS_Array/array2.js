@@ -36,44 +36,65 @@ console.log(objects);
 console.log('==============================');
 
 /*
-    forEach(콜백 함수) : 
-    - 
-    - 
-    - 
-    - 
+    forEach(콜백 함수) : for 문 대신 사용
+    - 배열을 순회하면서 각 요소와 인덱스를 사용할 수 있도록 함 
+    - 원본 배열 변경 X
+    - break, continue, ... 부가적인 작업을 추가 X
+    - for 문보다 성능 떨어짐, 가독성이 좋고 편리하므로 자주 사용됨
+    - async await 작업은 forEach문으로 사용 불가
 */
-
+array.forEach(function (item, index) {
+    console.log(`index : ${index} , item : ${item}`);
+});
 
 console.log('==============================');
 
 /*
-    map(콜백 함수) : 
-    - 
-    - 
+    map(콜백 함수) : 콜백 함수의 반환값들로 이루어진 새로운 배열 생성해서 반환
+    - 원본 배열 변경 X
+    - forEach 단순히 요소를 가지고 작업만 진행 (반환 값X), map 요소를 가지고 작업한 결과로 배열 새로 만듬 (반환 값 O)
 */
+const mapArray = array.map(function (item, index) {
+    console.log(`index : ${index} , item : ${item}`);
+    return item * item;
+});
 
+console.log(mapArray);
+console.log(array);
 
 console.log('==============================');
 
 /*
-    filter(콜백 함수) : 
-    - 
-    - 
+    filter(콜백 함수) : 콜백함수의 반환 값이 true 인 배열의 요소의 값만을 추출한 새로운 배열을 생성
+    - 배열에서 특정 케이스만 필터링 조건으로 추출하여 새로운 배열을 만들고 싶을 때 사용
+    - 원본 배열 변경 불가능
 */
+const filterArray = array.filter(function (item, index) {
+    return item % 2 === 1;
+});
 
+console.log(filterArray);
+console.log(array);
 
 console.log('==============================');
 
 /*
-    find(value, index) : 
+    find(콜백 함수) : 콜백 함수 결과가 true인 첫번째 요소를 반환
 */
-
+const findResult = array.find(function (item, index) {
+    return item % 2 === 1;
+});
+console.log(findResult);
 
 console.log('==============================');
 
 /*
-    find(value, index) : 
+    findIndex(콜백 함수) : 콜백 함수 결과가 true인 첫 번째 요소의 인덱스를 반환
 */
+const findIndexResult = array.findIndex(function (item, index) {
+    return item % 2 === 1;
+});
 
+console.log(findIndexResult);
 
 console.log('==============================');
