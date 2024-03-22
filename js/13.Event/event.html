@@ -15,8 +15,8 @@
 
     <div id="event-object">이벤트 객체</div>
 
-    <form id="form-parent" action="">
-        <input id="form-input" />
+    <form id="form-parent">
+        <input id="form-input" name="data" />
         <button id="form-button">버튼</button>
     </form>
 
@@ -96,30 +96,36 @@
 
         /*
             이벤트 핸들러 속성 방식
-            - 
+            - document element의 onEvent 속성으로 등록하는 방법
         */
-        
-        
+        const eventHandlerPropButtonElement = document.getElementById('event-handler-prop');
+        eventHandlerPropButtonElement.onclick = function () {
+            alert('이벤트 핸들러 속성 방식!');
+        }
 
         console.log('==============================');
 
         /*
             addEventListener 메소드 방식
-            - 
-            - 
+            - addEventListener 메소드를 이용해서 대상 요소에 이벤트를 등록
+            - 등록한 이벤트가 발생할 때 같이 전달한 콜백 함수를 실행
         */
-        
-        
+        const eventListnerButtonElement = document.getElementById('event-listener');
+        eventListnerButtonElement.addEventListener('click', function () {
+            alert('이벤트 리스너 등록 방식!');
+        });
 
         console.log('==============================');
 
         /*
             이벤트 객체 : 
-            - 
-            - 
+            - 이벤트를 발생시킨 요소와 발생한 이벤트의 정보를 가지고 잇는 객체
+            - 이벤트가 발생하면 이벤트 객체는 자동으로 생성되며 이벤트를 처리하는 핸들러 함수에 매개변수로 전달됨
         */
-        
-        
+        const eventObjectElement = document.getElementById('event-object');
+        eventObjectElement.addEventListener('click', function (event) {
+            console.log(event);
+        });
 
         console.log('==============================');
 
@@ -128,13 +134,18 @@
         */
 
         /*
-            target : 
-            currentTarget : 
-            type : 
-            cancelable : 
+            target : 실제로 이벤트를 발생시킨 요소
+            currentTarget : 이벤트가 등록된 요소
+            type : 이벤트의 종류
+            cancelable : 기본 동작에 대한 취소 여부
         */
-        
-        
+        const formParentElement = document.getElementById('form-parent');
+        formParentElement.addEventListener('click', function (event) {
+            console.log('target : ' + event.target.id);
+            console.log('currentTarget : ' + event.currentTarget.id);
+            console.log('type : ' + event.type);
+            console.log('cancelable : ' + event.cancelable);
+        });
 
         console.log('==============================');
 
@@ -143,10 +154,15 @@
         */
 
         /*
-            preventDefault() : 
-            stopPropagation() : 
+            preventDefault() : 요소가 기본적으로 가지고 있는 동작을 중단
+            stopPropagation() : 요소에서 이벤트를 처리한 후 이벤트가 부모 요소로 전파되는 것을 중단
         */
-        
+        const formButtonElement = document.getElementById('form-button');
+        formButtonElement.addEventListener('click', function (event) {
+            event.preventDefault();
+            console.log('submit 버튼 클릭!');
+            event.stopPropagation();
+        });
 
 
     </script>
