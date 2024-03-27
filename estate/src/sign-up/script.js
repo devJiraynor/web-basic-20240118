@@ -13,6 +13,9 @@ const checkAuthNumberButtonElement = document.getElementById('check-auth-number-
 
 const idMessageElement = document.getElementById('id-message');
 const emailMessageElement = document.getElementById('email-message');
+const authNumberMessageElement = document.getElementById('auth-number-message');
+
+const signInLinkElement = document.getElementById('sign-in-link');
 
 function onIdInputHandler (event) {
     const value = event.target.value;
@@ -59,10 +62,10 @@ function onCheckDuplicateClickHandler (event) {
 
 function onCheckEmailClickHandler (event) {
     const emailValue = emailInputElement.value;
+    if (!emailValue) return;
 
     const emailReg = /^[a-zA-Z0-9]*@([-.]?[a-zA-Z0-9])*\.[a-zA-Z]{2,4}$/;
     const isEmail = emailReg.test(emailValue);
-    console.log(emailValue, isEmail ? 'true' : 'false');
     if (!isEmail) {
         emailMessageElement.className = 'input-message error';
         emailMessageElement.textContent = '이메일 형식이 아닙니다.';
@@ -81,5 +84,27 @@ function onCheckEmailClickHandler (event) {
 
 }
 
+function onCheckAuthNumberClickHandler (event) {
+    const authNumberValue = authNumberInputElement.value;
+    if (!authNumberValue) return;
+
+    const isEqualAuthNumber = authNumberValue === AUTH_NUMBER;
+    if (!isEqualAuthNumber) {
+        authNumberMessageElement.className = 'input-message error';
+        authNumberMessageElement.textContent = '인증번호가 일치하지 않습니다.';
+        return;
+    }
+    
+    authNumberMessageElement.className = 'input-message primary';
+    authNumberMessageElement.textContent = '인증번호가 확인되었습니다.';
+}
+
 checkDuplicateButtonElement.addEventListener('click', onCheckDuplicateClickHandler);
 checkEmailButtonElement.addEventListener('click', onCheckEmailClickHandler);
+checkAuthNumberButtonElement.addEventListener('click', onCheckAuthNumberClickHandler);
+
+function onSignInLinkClickHandler (event) {
+    window.location.href = '../sign-in';
+}
+
+signInLinkElement.addEventListener('click', onSignInLinkClickHandler);
