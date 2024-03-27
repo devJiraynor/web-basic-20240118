@@ -157,8 +157,6 @@ function setSignUpButton () {
         id && password && passwordCheck && email && authNumber && 
         !isDuplicate && isEmail && !isDuplicateEmail && isEqualAuthNumber;
 
-    console.log('aaaaa');
-
     if (isPrimaryButton) signUpButtonElement.className = 'primary-button full-width';
     else signUpButtonElement.className = 'disable-button full-width';
 
