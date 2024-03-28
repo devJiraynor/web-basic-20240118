@@ -34,17 +34,28 @@ function onIdInputHandler (event) {
 }
 
 function onPasswordInputHandler (event) {
+    // 비밀번호 변수에 이벤트가 발생한 실제 요소의 value 값을 할당한다.
     password = event.target.value;
 
+    // 비밀번호 패턴을 정규식으로 영문자와 숫자를 반드시 포함한 상태로 8~13자로 지정한다.
     const passwordReg = /^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]{8,13}$/;
+    // 비빌번호 변수에 들어있는 값이 비밀번호 패턴과 일치하는지 확인한다.
     isPasswordPattern = passwordReg.test(password);
 
+    // 비밀번호 패턴이 일치하지 않을 때
     if (!isPasswordPattern) {
+        // passwordMessase 요소의 클래스명을 'input-message error'로 바꾼다.
         passwordMessageElement.className = 'input-message error';
+        // passwordMessase 요소의 텍스트를 '영문, 숫자를 혼용하여 8 ~ 13자 입력해주세요'로 바꾼다.
         passwordMessageElement.textContent = '영문, 숫자를 혼용하여 8 ~ 13자 입력해주세요';
+        // 변경 작업이 이뤄진 후 함수를 종료한다.
         return;
     }
+    // 비밀번호 패턴이 일치할 경우에만 아래 코드가 실행됨
+
+    // passwordMessase 요소의 클래스명을 'input-message'로 바꾼다.
     passwordMessageElement.className = 'input-message';
+    // passwordMessase 요소의 텍스트를 빈문자열로 바꾼다.
     passwordMessageElement.textContent = '';
 }
 
