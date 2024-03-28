@@ -4,7 +4,7 @@ const EMAIL = 'email@email.com';
 const AUTH_NUMBER = '1010';
 
 let id = '', password = '', passwordCheck = '', email = '', authNumber = '';
-let isDuplicate = true, isEmail = false, isDuplicateEmail = true, isEqualAuthNumber = false;
+let isDuplicate = true, isPasswordPattern = false, isEqualPassword = false, isEmail = false, isDuplicateEmail = true, isEqualAuthNumber = false;
 
 const idInputElement = document.getElementById('id');
 const passwordInputElement = document.getElementById('password');
@@ -17,6 +17,8 @@ const checkEmailButtonElement = document.getElementById('check-email-button');
 const checkAuthNumberButtonElement = document.getElementById('check-auth-number-button');
 
 const idMessageElement = document.getElementById('id-message');
+const passwordMessageElement = document.getElementById('password-message');
+const passwordCheckMessageElement = document.getElementById('password-check-message');
 const emailMessageElement = document.getElementById('email-message');
 const authNumberMessageElement = document.getElementById('auth-number-message');
 
@@ -33,10 +35,30 @@ function onIdInputHandler (event) {
 
 function onPasswordInputHandler (event) {
     password = event.target.value;
+
+    const passwordReg = /^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]{8,13}$/;
+    isPasswordPattern = passwordReg.test(password);
+
+    if (!isPasswordPattern) {
+        passwordMessageElement.className = 'input-message error';
+        passwordMessageElement.textContent = '영문, 숫자를 혼용하여 8 ~ 13자 입력해주세요';
+        return;
+    }
+    passwordMessageElement.className = 'input-message';
+    passwordMessageElement.textContent = '';
 }
 
 function onPasswordCheckInputHandler (event) {
     passwordCheck = event.target.value;
+
+    isEqualPassword = password === passwordCheck;
+    if (!isEqualPassword) {
+        passwordCheckMessageElement.className = 'input-message error';
+        passwordCheckMessageElement.textContent = '비밀번호가 일치하지 않습니다.';
+        return;
+    }
+    passwordCheckMessageElement.className = 'input-message';
+    passwordCheckMessageElement.textContent = '';
 }
 
 function onEmailInputHandler (event) {
@@ -155,7 +177,7 @@ function setSignUpButton () {
 
     const isPrimaryButton = 
         id && password && passwordCheck && email && authNumber && 
-        !isDuplicate && isEmail && !isDuplicateEmail && isEqualAuthNumber;
+        !isDuplicate && isPasswordPattern && isEqualPassword && isEmail && !isDuplicateEmail && isEqualAuthNumber;
 
     if (isPrimaryButton) signUpButtonElement.className = 'primary-button full-width';
     else signUpButtonElement.className = 'disable-button full-width';
