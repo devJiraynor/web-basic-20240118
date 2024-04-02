@@ -44,5 +44,4 @@ const asyncFunction = async () => {
 
 asyncFunction();
 
-
 console.log('==================================================');
